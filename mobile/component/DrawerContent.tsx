@@ -1,15 +1,16 @@
 import React from 'react';
 import {TouchableOpacity, View, Text, StyleSheet, Image} from 'react-native';
-import {useIsFocused, useRoute} from '@react-navigation/native';
+
 import Avatar from '../asset/images/avatar-img.jpg';
 import {useGlobalContext} from '../hooks/useGlobalContext';
 import {Colors} from '../contants/themes';
 import Dashboard from '../asset/icons/home.png';
-import Courses from '../asset/icons/courses.png';
-import RegisterCourses from '../asset/icons/register-course.png';
-import MyLearning from '../asset/icons/my-learning.png';
-import Payment from '../asset/icons/payment.png';
+
+import AvatarIcon from '../asset/icons/avatar.png';
+import SettingIcon from '../asset/icons/setting.png';
+
 import Logout from '../asset/icons/logout.png';
+import {capitalizeFirstLetter} from '../contants/utils/helper';
 
 const DrawerContentItem = ({label, onPress, image}: any) => {
   return (
@@ -35,7 +36,9 @@ const DrawerContent = ({navigation}: any) => {
   return (
     <View style={styles.container}>
       <Image style={styles.avatar} source={Avatar} resizeMode="cover" />
-      <Text style={styles.name}>{userData.data.fullName}</Text>
+      <Text style={styles.name}>
+        {capitalizeFirstLetter(userData.data.fullName)}
+      </Text>
       <Text style={styles.matric}>{userData.data.matricNo}</Text>
       <DrawerContentItem
         image={Dashboard}
@@ -43,24 +46,14 @@ const DrawerContent = ({navigation}: any) => {
         onPress={() => navigation.navigate('Dashboard')}
       />
       <DrawerContentItem
-        image={Courses}
-        label="Courses"
-        onPress={() => navigation.navigate('Courses')}
+        image={AvatarIcon}
+        label="Bio-Data"
+        onPress={() => navigation.navigate('Bio Data')}
       />
       <DrawerContentItem
-        image={RegisterCourses}
-        label="Register Courses"
-        onPress={() => navigation.navigate('Register Courses')}
-      />
-      <DrawerContentItem
-        image={MyLearning}
-        label="My Learning"
-        onPress={() => navigation.navigate('My Learning')}
-      />
-      <DrawerContentItem
-        image={Payment}
-        label="Payment"
-        onPress={() => navigation.navigate('Payment')}
+        image={SettingIcon}
+        label="Settings"
+        onPress={() => navigation.navigate('Settings')}
       />
       <DrawerContentItem
         image={Logout}
@@ -77,7 +70,6 @@ const DrawerContent = ({navigation}: any) => {
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 20,
-
     paddingHorizontal: 20,
   },
   imageContainer: {

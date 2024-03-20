@@ -120,7 +120,7 @@ const Courses = ({navigation}: any) => {
       if (data.data) {
         Toast.show({
           type: ALERT_TYPE.SUCCESS,
-          title: 'Error',
+          title: 'Success',
           textBody: data.data.message,
         });
       }

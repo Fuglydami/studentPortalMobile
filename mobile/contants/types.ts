@@ -11,6 +11,7 @@ export interface ColorsType {
   danger: string;
   darkGreen: string;
   accentGrey: string;
+  grey: string;
 }
 export interface HeaderTextType {
   text1: string;

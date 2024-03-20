@@ -9,7 +9,7 @@ import {
   useNavigation,
 } from '@react-navigation/native';
 
-const Header = () => {
+const Header = ({notification = true}: any) => {
   const navigation = useNavigation();
 
   const openDrawer = () => {
@@ -25,11 +25,13 @@ const Header = () => {
             style={styles.image}
           />
         </TouchableOpacity>
-        <Image
-          source={assets.NotificationIcon}
-          resizeMode="contain"
-          style={styles.image}
-        />
+        {notification && (
+          <Image
+            source={assets.NotificationIcon}
+            resizeMode="contain"
+            style={styles.image}
+          />
+        )}
       </View>
     </>
   );

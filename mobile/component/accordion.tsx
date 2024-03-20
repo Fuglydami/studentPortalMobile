@@ -1,5 +1,13 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, Pressable, Image} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  Image,
+  SafeAreaView,
+  FlatList,
+} from 'react-native';
 import {Colors} from '../contants/themes';
 // import CustomRadioButton from './CustomRadioButton';
 import assets from '../contants/assets';
@@ -37,10 +45,34 @@ const Accordion: React.FC<AccordionProps> = ({
     }
   };
 
+  const changeRadius = {
+    borderBottomLeftRadius: isExpanded ? 0 : 15,
+    borderBottomRightRadius: isExpanded ? 0 : 15,
+  };
+
+  const renderItem = ({item}: any) => {
+    return (
+      <View style={styles.Collasiblecontainer}>
+        <View>
+          <Text style={styles.text}>
+            {item.courseCode}: {item.unit}
+            {''}
+          </Text>
+          <Text style={styles.text}>{item.courseTitle}</Text>
+        </View>
+        <Pressable onPress={() => handleToggle(item)}>
+          {courseAction({
+            isSelected: selectedCourses.includes(item),
+            courseId: item,
+          })}
+        </Pressable>
+      </View>
+    );
+  };
   return (
     <View>
       <Pressable onPress={toggleAccordion}>
-        <View style={styles.header}>
+        <View style={[styles.header, changeRadius]}>
           <Text style={styles.headerText}>{accordiontitle}</Text>
           <View style={styles.imageContainer}>
             <Image
@@ -53,26 +85,11 @@ const Accordion: React.FC<AccordionProps> = ({
 
       {isExpanded && (
         <View style={styles.content}>
-          {content?.map((item, index) => {
-            const {id, courseTitle, courseCode, unit} = item;
-            return (
-              <View key={index} style={styles.Collasiblecontainer}>
-                <View>
-                  <Text style={styles.text}>
-                    {courseCode}: {unit}
-                    {''}
-                  </Text>
-                  <Text style={styles.text}>{courseTitle}</Text>
-                </View>
-                <Pressable onPress={() => handleToggle(item)}>
-                  {courseAction({
-                    isSelected: selectedCourses.includes(item),
-                    courseId: item,
-                  })}
-                </Pressable>
-              </View>
-            );
-          })}
+          <FlatList
+            data={content}
+            renderItem={renderItem}
+            keyExtractor={item => item.id}
+          />
         </View>
       )}
     </View>
@@ -104,6 +121,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 15,
     borderRadius: 12,
+
     backgroundColor: Colors.lightestGreen,
   },
   headerText: {

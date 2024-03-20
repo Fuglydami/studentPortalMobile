@@ -8,6 +8,7 @@ import HomeSlider from '../../component/homeSlider';
 import Spacer from '../../component/spacer';
 import {useGlobalContext} from '../../hooks/useGlobalContext';
 import ErrorMessage from '../../component/errorMessage';
+import {capitalizeFirstLetter} from '../../contants/utils/helper';
 
 const Dashboard = ({navigation}: any) => {
   const {userData} = useGlobalContext();
@@ -18,7 +19,7 @@ const Dashboard = ({navigation}: any) => {
     <Container backgroundColor="">
       <View style={styles.section}>
         <HeaderText
-          text1={`Hi ${firstName}`}
+          text1={`Hi ${capitalizeFirstLetter(firstName)}`}
           text2="Let's Start learning"
           marginBottom={4}
           textColor1={Colors.white}

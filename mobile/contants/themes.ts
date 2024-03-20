@@ -13,4 +13,5 @@ export const Colors: ColorsType = {
   danger: '#C43A27',
   accentGrey: '#E0E0E0',
   lightestGreen: '#CEFFE7',
+  grey: '#808080',
 };

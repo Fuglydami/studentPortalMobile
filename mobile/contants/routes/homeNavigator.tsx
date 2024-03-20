@@ -7,6 +7,8 @@ import {Colors} from '../themes';
 import {KeyboardAvoidingView, Platform} from 'react-native';
 import DrawerSceneWrapper from '../../component/drawerSceneWrapper';
 import {useGlobalContext} from '../../hooks/useGlobalContext';
+import BioData from '../../pages/home/bioData';
+import Settings from '../../pages/home/settings';
 
 const Drawer = createDrawerNavigator();
 
@@ -38,6 +40,16 @@ const HomeNavigator: React.FC = ({navigation}: any) => {
           name="Home"
           options={{headerShown: false}}
           component={TabNavigator}
+        />
+        <Drawer.Screen
+          name="Bio Data"
+          options={{headerShown: false}}
+          component={BioData}
+        />
+        <Drawer.Screen
+          name="Settings"
+          options={{headerShown: false}}
+          component={Settings}
         />
       </Drawer.Navigator>
     </NavigationContainer>

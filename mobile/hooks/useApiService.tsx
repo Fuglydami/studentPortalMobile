@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {apiService} from '../services/apiServices';
-import {useNavigation} from '@react-navigation/native';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 
 interface ApiResponse<T> {
   data: T | null;
@@ -9,8 +9,8 @@ interface ApiResponse<T> {
   message?: any;
 }
 
-export const useApiService = () => {
-  const navigation = useNavigation();
+export const useApiService = (navigation: NavigationProp<any>) => {
+  // const navigation = useNavigation();
   const [loading, setLoading] = useState<boolean>(false);
 
   const fetchData = async <T,>(
@@ -27,6 +27,16 @@ export const useApiService = () => {
         error: null,
       };
     } catch (error) {
+      if (
+        error.response &&
+        (error.response.status === 401 || error.response.status === 403)
+      ) {
+        navigation.navigate('Login');
+        console.log(
+          error.response.status,
+          'User is not authorized. Logging out...',
+        );
+      }
       return {
         data: null,
         loading: false,

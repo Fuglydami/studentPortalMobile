@@ -21,10 +21,24 @@ const closeIcon = require('../asset/icons/close-circle.png') as String;
 const trashIcon = require('../asset/icons/trash.png') as String;
 const successIcon = require('../asset/images/verify.png') as String;
 const errorIllustration = require('../asset/images/nocourse.png') as String;
+const paymentIcon = require('../asset/images/paymentIcon.png') as String;
+const paymentHistoryIcon =
+  require('../asset/images/paymentHistoryIcon.png') as String;
+const technologyFeeIcon =
+  require('../asset/images/technologyFeeIcon.png') as String;
+const printTechIcon = require('../asset/images/printTechIcon.png') as String;
+const printerIcon = require('../asset/images/printerIcon.png') as String;
+const refreshIcon = require('../asset/images/refreshIcon.png') as String;
 
 export default {
   Logo,
   HomeGif1,
+  paymentIcon,
+  paymentHistoryIcon,
+  technologyFeeIcon,
+  printTechIcon,
+  printerIcon,
+  refreshIcon,
   errorIllustration,
   HomeGif2,
   HomeGif3,

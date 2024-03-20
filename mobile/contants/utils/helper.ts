@@ -12,3 +12,6 @@ export const loadData = async key => {
   const parsedUserData = storedUserData ? JSON.parse(storedUserData) : null;
   return parsedUserData;
 };
+export function capitalizeFirstLetter(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
